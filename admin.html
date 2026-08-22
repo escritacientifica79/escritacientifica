@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📙</text></svg>">
+    <title>Painel de Administração</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <form id="approve">
+    <h1>Adicionar e-mail</h1>
+    <input placeholder="Insira aqui um endereço de e-mail para permitir seu acesso">
+    <button>Adicionar</button>
+    </form>
+    <form id="revoke">
+    <h1>Remover e-mail</h1>
+    <input type="email" placeholder="Insira aqui um endereço de e-mail para impedir seu acesso">
+    <button>Remover</button>
+    </form>
+    <style>
+      :root {
+        --cream: #F5E6C8;
+        --tan: #E8C9A0;
+        --red: #D42B2B;
+        --burgundy: #4A0E0E;
+      }
+      body {
+        background-color: #2E0808;
+      }
+      h1 {
+        font-size: 40px;
+        text-align: center;
+        font-family: outfit;
+        color: var(--cream);
+      }
+      input {
+        border: solid 1px var(--burgundy);
+        border-radius: 15px;
+        background-color: #2E0808;
+        color: var(--tan);
+        font-family: outfit;
+        width: 60%;
+        height: 10px;
+        padding: 2%;
+        margin-left: 18%;
+        text-align: center;
+        transition: all 0.3s ease-out;
+      }
+      input::placeholder {
+        color: #821D1D;
+        font-family: outfit;
+      }
+      input:focus {
+        background-color: var(--tan);
+        box-shadow: 0 0 0 2px var(--tan);
+        outline: none;
+        color: var(--burgundy);
+        font-family: outfit;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        margin: 30px auto;
+        width: fit-content;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        color: var(--cream);
+        background-color: var(--burgundy);
+        font-family: outfit;
+        transition: all 0.3s ease-out;
+      }
+      button:hover {
+        background-color: var(--tan);
+        color: var(--burgundy);
+        box-shadow: 0 0 5px var(--tan);
+        transform: scale(1.05);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="auth.js"></script>
+    <script>
+(async () => {
+  const { data: { user } } = await window.supabaseClient.auth.getUser();
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+  const { data: profile, error } = await window.supabaseClient
+    .from('profiles')
+    .select('is_admin')
+    .eq('id', user.id)
+    .single();
+  if (error || !profile?.is_admin) {
+    alert("Acesso negado!");
+    await window.supabaseClient.auth.signOut();
+    window.location.href = "login.html";
+    return;
+  }
+  document.body.style.visibility = 'visible';
+})();
+document.getElementById('approve').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.querySelector('#approve input').value.trim();
+  const btn = document.querySelector('#approve button');
+  btn.textContent = 'Adicionando...';
+  btn.disabled = true;
+  const { data, error } = await window.supabaseClient
+    .from('profiles')
+    .update({ approved: true })
+    .eq('email', email)
+    .select();
+  if (error || data.length === 0) {
+    alert("❌ Email não encontrado!");
+  } else {
+    alert(`✅ ${email} aprovado!`);
+    document.querySelector('#approve input').value = '';
+  }
+  btn.textContent = 'Adicionar';
+  btn.disabled = false;
+});
+document.getElementById('revoke').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.querySelector('#revoke input').value.trim();
+  const btn = document.querySelector('#revoke button');
+  btn.textContent = 'Removendo...';
+  btn.disabled = true;
+  const { data, error } = await window.supabaseClient
+    .from('profiles')
+    .update({ approved: false })
+    .eq('email', email)
+    .select();
+  if (error || data.length === 0) {
+    alert("❌ Email não encontrado!");
+  } else {
+    alert(`🚫 ${email} removido!`);
+    document.querySelector('#revoke input').value = '';
+  }
+  btn.textContent = 'Remover';
+  btn.disabled = false;
+});
+    </script>
+  </body>
+</html>

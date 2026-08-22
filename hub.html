@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📙</text></svg>">
+    <title>Menu de Aulas</title>
+    <link href="hubstyle.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body style="visibility: hidden;">
+      <div id="logoutwindow">
+        <p id="logouttext">Deseja mesmo <span class="red">sair</span>?</p>
+        <button id="yes">Sim</button>
+        <button id="no">Não</button>
+      </div>
+    <div id="navbar">
+      <button id="nbtitle">Escrita Científica</button>
+      <button id="adminbutton" style="display: none;" onclick="window.location.href='admin.html'">Admin</button>
+      <button id="logout">Sair</button>
+    </div>
+    <main>
+<div id="selector"> 
+  <a class="sub" 
+    data-titulo="Módulo 1" 
+    data-video-id="57b31118-af33-4098-b49d-42f72beaeedf" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 1</p> 
+  </a> 
+
+  <a class="sub" 
+    data-titulo="Módulo 2" 
+    data-video-id="6ada7e60-cda1-440b-9303-d59910290e84" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 2</p> 
+  </a> 
+
+  <a class="sub" 
+    data-titulo="Módulo 3" 
+    data-video-id="6989b79e-456f-418a-be3a-b1706c692d22" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 3</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 3.1" 
+    data-video-id="a21226fc-1c33-4d2e-9834-af94118abf2e" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 3.1</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 4" 
+    data-video-id="fd483b68-eb67-41fa-ace4-819537ab8adf" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 4</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 5" 
+    data-video-id="e354e479-3777-4a11-97b8-f4be159c1301" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 5</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 6" 
+    data-video-id="787c38e1-ea2a-4674-9111-91f70cf4a9ca" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 6</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 7" 
+    data-video-id="bdae0cd8-ea24-4f98-929b-47853ba2ec03" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 7</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 8" 
+    data-video-id="601d9fd1-0a45-46ee-bdc2-24d860b65a9c"
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 8</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 9" 
+    data-video-id="31dbcae5-03c1-40a5-b6c2-e42f4fd5a3e8" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 9</p> 
+  </a>
+
+  <a class="sub" 
+    data-titulo="Módulo 10" 
+    data-video-id="b9547515-661b-4891-81ea-350bc163c8e7" 
+    data-pdf=""> 
+    <img class="img" src="thumbnail.jpg"> 
+    <p class="subt">Módulo 10</p> 
+  </a>
+</div>
+      <div id="content" style="display: none;">
+        <h1 id="content-titulo">Example Text</h1>
+        <iframe id="content-video" allowfullscreen></iframe>
+        <iframe id="content-pdf"></iframe>
+      </div>
+    </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (async () => {
+  const { data: { user } } = await window.supabaseClient.auth.getUser();
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+  const { data: profile, error } = await window.supabaseClient
+    .from('profiles')
+    .select('approved, is_admin')
+    .eq('id', user.id)
+    .single();
+  if (error || !profile?.approved) {
+    alert("Acesso negado!");
+    await window.supabaseClient.auth.signOut();
+    window.location.href = "login.html";
+    return;
+  }
+  if (profile?.is_admin) {
+    document.getElementById('adminbutton').style.display = 'block';
+  }
+  document.body.style.visibility = 'visible';
+})();
+</script>
+  <script src="hubscript.js"></script>
+  </body>
+</html>

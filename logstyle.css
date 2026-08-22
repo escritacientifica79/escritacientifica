@@ -1,0 +1,85 @@
+:root {
+  --cream: #F5E6C8;
+  --tan: #E8C9A0;
+  --red: #D42B2B;
+  --burgundy: #4A0E0E;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #2E0808;
+  color: var(--cream);
+  font-family: outfit;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 50px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+input {
+  margin: 0 20vw;
+  padding-left: 8px;
+  width: 60vw;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--burgundy);
+  color: var(--tan);
+  resize: none;
+  transition: all 0.3s ease-out;
+  font-family: outfit;
+  border: solid 0px var(--red);
+}
+
+input::placeholder {
+  color: #821D1D;
+  font-family: outfit;
+}
+
+button {
+  width: 80px;
+  height: 25px;
+  margin: 40px calc(50vw - 40px);
+  border: none;
+  border-radius: 8px;
+  background-color: var(--cream);
+  color: var(--burgundy);
+  font-family: outfit;
+  transition: all 0.3s ease-out;
+}
+
+button:hover {
+  box-shadow: 0 0 6px #F5E6C8;
+  cursor: pointer;
+}
+
+input:focus {
+  background-color: var(--tan);
+  box-shadow: 0 0 0 2px var(--tan);
+  outline: none;
+  color: var(--burgundy);
+}
+
+#logerror {
+  margin: 3px calc(20vw + 6px);
+  font-size: 12px;
+  color: var(--red);
+  text-shadow: 0 0 3px var(--red);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--tan) inset;
+  -webkit-text-fill-color: var(--burgundy);
+  transition: background-color 99999s;
+}

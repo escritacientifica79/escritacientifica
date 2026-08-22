@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📙</text></svg>">
+    <title>Cadastrar</title>
+    <link href="regstyle.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <form id="register-form">
+    <h1>Cadastrar</h1>
+    <h2>E-mail</h2>
+    <input id="email" type="email" placeholder="Insira aqui seu endereço de e-mail">
+    <p id="regerror">Uma conta já foi criada com esse endereço de e-mail.</p>
+    <h2>Senha</h2>
+    <input type="password" id="password" placeholder="Dica: Utilize senhas fortes!">
+    <p id="shortpw">A senha deve conter no mínimo 6 caracteres.</p>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+  <script src="regscript.js"></script>
+  </body>
+</html>

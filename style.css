@@ -1,0 +1,168 @@
+:root {
+  --cream: #F5E6C8;
+  --tan: #E8C9A0;
+  --red: #D42B2B;
+  --burgundy: #4A0E0E;
+}
+
+body {
+  background: #2E0808;
+  color: var(--cream);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#wide svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+#wide {
+  margin-top: 5vw;
+  overflow: hidden;
+}
+
+#folders {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+#folder-cream {
+  width: auto;
+  max-width: 800px;
+  display: block;
+  margin: 0 auto;
+}
+
+.teko {
+  font-family: 'Teko';
+  font-weight: 700;
+}
+
+.outfit {
+  font-family: 'Outfit';
+  font-weight: 400;
+}
+
+.red {
+  color: var(--red);
+  fill: var(--red);
+}
+
+.tan {
+  color: var(--tan);
+  fill: var(--tan);
+}
+
+.burgundy {
+  color: var(--burgundy);
+  fill: var(--burgundy);
+}
+
+h1, .h1 {
+  font-size: 85px;
+}
+
+h2, .h2 {
+  font-size: 24px;
+}
+
+#pocket {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  #wide {
+    display: none;
+  }
+
+  #pocket {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h2 {
+    text-align: center;
+    padding: 0;
+  }
+
+h1 {
+  text-align: center;
+  font-family: Teko;
+  font-size: 20vw;
+  letter-spacing: 2.5px;
+  line-height: 16vw;
+  margin-top: 10vw;
+  margin-bottom: 5vw;
+  text-shadow: 16px 16px 0 rgba(0,0,0,0.5);
+}
+
+  h2 {
+    font-family: outfit;
+    font-size: 7vw;
+    text-shadow: 0 0 8px #000;
+  }
+}
+
+@media (max-width: 500px) {
+
+  #wide {
+    display: none;
+  }
+
+  #pocket {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h2 {
+    text-align: center;
+    padding: 0;
+  }
+
+h1 {
+  text-align: center;
+  font-family: Teko;
+  font-size: 20vw;
+  letter-spacing: 1.5px;
+  line-height: 20vw;
+  margin-top: 30vw;
+  margin-bottom: 15vw;
+}
+
+  h2 {
+    font-family: outfit;
+    font-size: 7vw;
+  }
+}
+
+#authbuttons {
+  position: fixed;
+  right: 7px;
+  top: 10px;
+}
+
+#logbutton, #regbutton {
+  background-color: var(--burgundy);
+  font-family: outfit;
+  color: var(--cream);
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.25s ease-out;
+  margin-right: 3px;
+  box-shadow: 0 0 8px 0.2px rgba(0,0,0,0.5);
+}
+
+#logbutton:hover, #regbutton:hover {
+  text-shadow: 0 0 16px var(--cream);
+  box-shadow: 0 0 8px 0.2px var(--burgundy);
+}

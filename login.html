@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📙</text></svg>">
+    <title>Entrar</title>
+    <link href="logstyle.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <form id="login-form">
+    <h1>Entrar</h1>
+    <h2>E-mail</h2>
+    <input id="login-email" type="email" placeholder="Seu endereço de e-mail">
+    <h2>Senha</h2>
+    <input id="login-password" type="password" placeholder="Sua senha">
+    <p id="logerror">Email e/ou senha incorreto(s).</p>
+    <button type="submit">Entrar</button>
+    </form>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+  <script src="logscript.js"></script>
+  </body>
+</html>
